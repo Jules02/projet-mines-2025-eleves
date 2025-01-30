@@ -16,7 +16,7 @@ let RedHeader = class RedHeader extends LitElement {
       <h1>RedGround</h1>
 
       <div class="account-wrapper">
-        <a href="">MON COMPTE</a>
+        <kor-button label="Mon compte"></kor-button>
       </div>
     `;
     }

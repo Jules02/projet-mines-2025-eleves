@@ -121,10 +121,11 @@ export class RedMessage extends LitElement {
   override render() {
     return html`
       <div class="wrapper">
-        <div class="author-wrapper">
-          <span class="author-name">${ this.author_name }</span> - <span class="author-username">@${ this.author_username }</span>
-          <profile-card></profile-card>
-        </div>
+        <kor-avatar
+          label="${ this.author_name }" 
+          image="https://www.evolutionsociety.org/userdata/news_picupload/pic_sid189-0-norm.jpg"
+        ></kor-avatar>
+        
         <p class="content">${ this.content }</p>
         <div class="image-container">
           <img class="image" src="${ this.image_src }">
