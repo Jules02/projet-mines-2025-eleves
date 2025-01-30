@@ -19,26 +19,6 @@ header {
     box-shadow: 0 0 150px 0 rgba(173,173,173,0.5);
 }
 
-header h1 {
-    color: rgba(193, 18, 31, 1);
-    font-weight: 900;
-
-    margin-left: 50px;
-}
-
-header a {
-    margin-right: 50px;
-    padding: 10px;
-
-    color: rgba(193, 18, 31, 1);
-
-    background-color: rgba(193, 18, 31, 0.3);
-    border: solid 3px rgba(193, 18, 31, 1);
-    border-radius: 30px;
-
-    text-decoration: none;
-}
-
 main {
     display: flex;
     justify-content: center;
@@ -92,43 +72,5 @@ main {
 .message-input-button:hover {
     font-weight: 900;
     cursor: pointer;
-}
-
-.sidebar-wrapper{
-    background-color: rgba(253, 240, 213, 0.5);
-    width: 30%;
-
-    padding: 15px;
-}
-
-.sidebar-search-input {
-    width: 100%;
-    height: 50px;
-
-    box-sizing: border-box;
-    padding: 25px;
-
-    background-color: rgba(255, 255, 255, 0.5);
-
-    border-radius: 25px;
-    border: none;
-
-    font-size: 15px;
-}
-
-.sidebar-trending-container {
-    margin-top: 30px;
-}
-
-.sidebar-trending-container h3 {
-    font-size: 14px;
-}
-
-.sidebar-trending-container ol {
-    line-height: 2.5;
-}
-
-.sidebar-trending-container a {
-    text-decoration: underline;
 }
 

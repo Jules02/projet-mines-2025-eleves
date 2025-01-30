@@ -1,9 +1,9 @@
 import { LitElement } from 'lit';
 /**
- * An example element.
+ * Profile Card
  *
  */
-export declare class RedMessage extends LitElement {
+export declare class ProfileCard extends LitElement {
     static styles: import("lit").CSSResult;
     /**
      * The author full name
@@ -31,11 +31,10 @@ export declare class RedMessage extends LitElement {
      */
     date: string;
     render(): import("lit-html").TemplateResult<1>;
-    private handleLike;
 }
 declare global {
     interface HTMLElementTagNameMap {
-        'red-message': RedMessage;
+        'profile-card': ProfileCard;
     }
 }
-//# sourceMappingURL=red-message.d.ts.map
+//# sourceMappingURL=profile-card.d.ts.map

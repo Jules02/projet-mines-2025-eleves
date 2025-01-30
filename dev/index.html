@@ -6,20 +6,20 @@
     <title>RedGround Social</title>
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../node_modules/lit/polyfill-support.js"></script>
+    <script type="module" src="../red-header.js"></script>
+    <script type="module" src="../red-sidebar.js"></script>
     <script type="module" src="../red-message.js"></script>
+    <script type="module" src="../profile-card.js"></script>
+
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   </head>
   <body>
-  <header>
-    <h1>RedGround</h1>
 
-    <div class="account-wrapper">
-      <a href="">MON COMPTE</a>
-    </div>
-  </header>
+  <red-header></red-header>
+
   <main>
     <section class="timeline-wrapper">
       <div class="message-input-wrapper">
@@ -32,14 +32,15 @@
         author_username="johndoe22"
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
         likes="22"
-        date="30 février 2024"
+        liked
+        date="2024-04-30T10:08:31.411Z"
       ></red-message>
       <red-message
         author_name="Jean DURANT"
         author_username="jean-dur"
         content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         likes="3"
-        date="3 mars 2025"
+        date="2025-01-30T10:08:33.411Z"
       ></red-message>
       <red-message
         author_name="Loïck BRIOT"
@@ -47,23 +48,12 @@
         content="Vive les robots chiens! Duip ex ea commodo consequat."
         image_src="as.jpg"
         likes="34"
-        date="1 janvier 2025"
+        liked
+        date="2025-01-10T10:08:33.411Z"
       ></red-message>
 
     </section>
-    <section class="sidebar-wrapper">
-      <input placeholder="Chercher" type="text" class="sidebar-search-input">
-      <div class="sidebar-trending-container">
-        <h3>En tendance aujourd'hui</h3>
-        <ol>
-          <li><a>BRE-RMA</a></li>
-          <li><a>Lorem Ipsum</a></li>
-          <li><a>François Bayrou</a></li>
-          <li><a>PS</a></li>
-          <li><a>Trump</a></li>
-        </ol>
-      </div>
-    </section>
+    <red-sidebar></red-sidebar>
   </main>
   </body>
 </html>

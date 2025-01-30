@@ -6,22 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { formatDistanceToNow } from 'date-fns';
+import { fr } from 'date-fns/locale';
 /**
  * An example element.
  *
- * @fires count-changed - Indicates when the count changes
- * @slot - This element has a slot
- * @csspart button - The button
  */
 let RedMessage = class RedMessage extends LitElement {
     constructor() {
         super(...arguments);
         /**
-         * The text content of the message
+         * The author full name
          */
         this.author_name = '';
         /**
-         * The text content of the message
+         * The author username
          */
         this.author_username = '';
         /**
@@ -29,13 +28,14 @@ let RedMessage = class RedMessage extends LitElement {
          */
         this.content = 'Lorem ipsum dolor sit amet, consectetur adipi';
         /**
-         * The text content of the message
+         * The source of the uploaded image
          */
         this.image_src = '';
         /**
-         * The date when the message was published
+         * The number of likes
          */
         this.likes = 0;
+        this.liked = false;
         /**
          * The date when the message was published
          */
@@ -46,6 +46,7 @@ let RedMessage = class RedMessage extends LitElement {
       <div class="wrapper">
         <div class="author-wrapper">
           <span class="author-name">${this.author_name}</span> - <span class="author-username">@${this.author_username}</span>
+          <profile-card></profile-card>
         </div>
         <p class="content">${this.content}</p>
         <div class="image-container">
@@ -53,24 +54,17 @@ let RedMessage = class RedMessage extends LitElement {
         </div>
         <div class="footer">
           <div class="like-wrapper">
-            <button class="like-button">&#x2665</button>
+            <button class="like-button" @click=${this.handleLike}>${this.liked ? '♥' : '♡'}</button>
             <span class="like-counter">${this.likes}</span>
           </div>
-          <p class="date">${this.date}</p>
+          <p class="date">${formatDistanceToNow(this.date, { addSuffix: true, locale: fr })}</p>
         </div>
       </div>
     `;
     }
-    /*private _onClick() {
-      this.count++;
-      this.dispatchEvent(new CustomEvent('count-changed'));
-    }*/
-    /**
-     * Formats a greeting
-     * @param name The name to say "Hello" to
-     */
-    sayHello(name) {
-        return `Hello, ${name}`;
+    handleLike() {
+        this.liked = !this.liked;
+        this.likes += this.liked ? 1 : -1;
     }
 };
 RedMessage.styles = css `
@@ -116,6 +110,10 @@ RedMessage.styles = css `
           padding: 0;
       }
 
+      .like-button:hover {
+          cursor: pointer;
+      }
+
       .date {
           font-size: 12px;
           font-weight: 100;
@@ -127,6 +125,15 @@ RedMessage.styles = css `
 
       .image {
           width: 400px;
+      }
+      
+      profile-card {
+          display: none;
+      }
+      
+      .author-wrapper:hover profile-card {
+          display: block;
+          position: absolute;
       }
   `;
 __decorate([
@@ -144,6 +151,9 @@ __decorate([
 __decorate([
     property({ type: Number })
 ], RedMessage.prototype, "likes", void 0);
+__decorate([
+    property({ type: Boolean })
+], RedMessage.prototype, "liked", void 0);
 __decorate([
     property()
 ], RedMessage.prototype, "date", void 0);

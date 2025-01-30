@@ -1,12 +1,11 @@
 import {LitElement, html, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
+import { formatDistanceToNow } from 'date-fns';
+import { fr } from 'date-fns/locale';
 
 /**
  * An example element.
  *
- * @fires count-changed - Indicates when the count changes
- * @slot - This element has a slot
- * @csspart button - The button
  */
 @customElement('red-message')
 export class RedMessage extends LitElement {
@@ -53,6 +52,10 @@ export class RedMessage extends LitElement {
           padding: 0;
       }
 
+      .like-button:hover {
+          cursor: pointer;
+      }
+
       .date {
           font-size: 12px;
           font-weight: 100;
@@ -65,16 +68,25 @@ export class RedMessage extends LitElement {
       .image {
           width: 400px;
       }
+      
+      profile-card {
+          display: none;
+      }
+      
+      .author-wrapper:hover profile-card {
+          display: block;
+          position: absolute;
+      }
   `;
 
   /**
-   * The text content of the message
+   * The author full name
    */
   @property()
   author_name = '';
 
   /**
-   * The text content of the message
+   * The author username
    */
   @property()
   author_username = '';
@@ -86,16 +98,19 @@ export class RedMessage extends LitElement {
   content = 'Lorem ipsum dolor sit amet, consectetur adipi';
 
   /**
-   * The text content of the message
+   * The source of the uploaded image
    */
   @property()
   image_src = '';
 
   /**
-   * The date when the message was published
+   * The number of likes
    */
   @property({type: Number})
   likes = 0;
+
+  @property({type: Boolean})
+  liked = false;
 
   /**
    * The date when the message was published
@@ -108,6 +123,7 @@ export class RedMessage extends LitElement {
       <div class="wrapper">
         <div class="author-wrapper">
           <span class="author-name">${ this.author_name }</span> - <span class="author-username">@${ this.author_username }</span>
+          <profile-card></profile-card>
         </div>
         <p class="content">${ this.content }</p>
         <div class="image-container">
@@ -115,26 +131,18 @@ export class RedMessage extends LitElement {
         </div>
         <div class="footer">
           <div class="like-wrapper">
-            <button class="like-button">&#x2665</button>
+            <button class="like-button" @click=${this.handleLike}>${ this.liked ? '♥' : '♡' }</button>
             <span class="like-counter">${ this.likes }</span>
           </div>
-          <p class="date">${ this.date }</p>
+          <p class="date">${ formatDistanceToNow(this.date, { addSuffix: true, locale: fr})}</p>
         </div>
       </div>
     `;
   }
 
-  /*private _onClick() {
-    this.count++;
-    this.dispatchEvent(new CustomEvent('count-changed'));
-  }*/
-
-  /**
-   * Formats a greeting
-   * @param name The name to say "Hello" to
-   */
-  sayHello(name: string): string {
-    return `Hello, ${name}`;
+  private handleLike() {
+    this.liked = !this.liked;
+    this.likes += this.liked ? 1 : -1;
   }
 }
 
